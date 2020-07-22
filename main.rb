@@ -24,6 +24,7 @@ def create(prefecture, filename)
     c << '-annotate' << '+0+20' << prefecture
     c << "output/#{filename}.png"
   end
+  FileUtils.chmod(0644, filename)
 end
 
 require 'json'
@@ -31,6 +32,7 @@ prefectures = {}
 File.open('prefectures.json') do |j|
   prefectures = JSON.parse(j.read)
 end
+
 
 prefectures.each do |prefecture|
   create(prefecture[0], prefecture[2])
