@@ -14,12 +14,12 @@ def create(prefecture, filename)
     # covid-19
     c << '-fill' << '#999999'
     c << '-font' << 'fonts/Furore.otf'
-    c << '-pointsize' << '70'
-    c << '-annotate' << '+0-90' << 'COVID-19'
+    c << '-pointsize' << '90'
+    c << '-annotate' << '+0-110' << 'COVID-19'
 
     # prefecture
     c << '-fill' << '#000000'
-    c << '-pointsize' << '120'
+    c << '-pointsize' << '150'
     c << '-font' << 'fonts/rounded-mplus-2p-medium.ttf'
     c << '-annotate' << '+0+20' << prefecture
     c << "output/#{filename}.png"
