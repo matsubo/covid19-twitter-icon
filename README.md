@@ -22,6 +22,9 @@ Font name
 - prefecture name
   - http://jikasei.me/font/rounded-mplus/about.html
 
+<a href="https://www.buymeacoffee.com/matsubokkuri" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+
 ## Sample
 
 ![image](https://user-images.githubusercontent.com/98103/87874728-1ab6f080-ca07-11ea-8b61-768e2eaa6da6.png)
