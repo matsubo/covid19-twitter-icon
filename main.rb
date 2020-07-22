@@ -4,7 +4,8 @@ require 'bundler/setup'
 Bundler.require
 
 def create(prefecture, filename)
-  puts filename
+  file = "output/#{filename}.png"
+  puts file
   MiniMagick::Tool::Convert.new do |c|
     c.size '550x550'
     c << 'canvas:#FFFFFF'
@@ -22,9 +23,9 @@ def create(prefecture, filename)
     c << '-pointsize' << '150'
     c << '-font' << 'fonts/rounded-mplus-2p-medium.ttf'
     c << '-annotate' << '+0+20' << prefecture
-    c << "output/#{filename}.png"
+    c << file 
   end
-  FileUtils.chmod(0644, filename)
+  FileUtils.chmod(0644, file)
 end
 
 require 'json'
