@@ -13,6 +13,12 @@
 % docker-compose run --rm app bundle exec ruby main.rb
 ```
 
+## Compress png file
+
+```
+% ./compress.sh
+```
+
 ## Reference
 
 Font name
