@@ -1,5 +1,7 @@
 # covid19-twitter-icon
 
+![CI](https://github.com/matsubo/covid19-twitter-icon/workflows/CI/badge.svg)
+
 ## Setup
 
 ```
