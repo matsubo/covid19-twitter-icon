@@ -2,6 +2,9 @@
 
 ![CI](https://github.com/matsubo/covid19-twitter-icon/workflows/CI/badge.svg)
 
+47都道府県のTwitterアイコンを自動生成します。
+
+
 ## Setup
 
 ```
