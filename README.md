@@ -42,5 +42,5 @@ Font name
 
 ## Author
 
-[Yuki Matsukura](https://github.com/matsubo/covid19-twitter-icon)
+[Yuki Matsukura](https://matsu.teraren.com/)
 
