@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: ruby:2.7
+    image: ruby:3
     volumes:
       - .:/app
     stdin_open: true
