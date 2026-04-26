@@ -2,39 +2,33 @@
 
 require 'bundler/setup'
 Bundler.require
+require 'optparse'
 
-def create(prefecture, filename)
-  file = "output/#{filename}.png"
-  puts file
-  MiniMagick::Tool::Convert.new do |c|
-    c.size '550x550'
-    c << 'canvas:#FFFFFF'
-    c << '-fill' << '#000000'
-    c << '-gravity' << 'Center'
+$LOAD_PATH.unshift(File.expand_path('lib', __dir__))
+require 'prefecture'
+require 'icon_generator'
 
-    # covid-19
-    c << '-fill' << '#999999'
-    c << '-font' << 'fonts/Furore.otf'
-    c << '-pointsize' << '90'
-    c << '-annotate' << '+0-110' << 'COVID-19'
+def parse_options(argv)
+  options = {}
+  OptionParser.new do |o|
+    o.banner = 'Usage: ruby main.rb [options]'
+    o.on('--text TEXT', 'Header overlay text (default: COVID-19)') { |v| options[:header_text] = v }
+    o.on('--output-dir DIR', 'Output directory (default: output)') { |v| options[:output_dir] = v }
+    o.on('--color COLOR', 'Prefecture label color (default: #000000)') { |v| options[:label_color] = v }
+    o.on('--data PATH', 'Prefectures JSON path (default: prefectures.json)') { |v| options[:data] = v }
+  end.parse!(argv)
+  options
+end
 
-    # prefecture
-    c << '-fill' << '#000000'
-    c << '-pointsize' << '150'
-    c << '-font' << 'fonts/rounded-mplus-2p-medium.ttf'
-    c << '-annotate' << '+0+20' << prefecture
-    c << file 
+def main(argv)
+  options = parse_options(argv)
+  data_path = options.delete(:data) || 'prefectures.json'
+
+  generator = IconGenerator.new(options)
+  Prefecture.load_all(data_path).each do |pref|
+    path = generator.generate(pref)
+    puts path
   end
-  FileUtils.chmod(0644, file)
 end
 
-require 'json'
-prefectures = {}
-File.open('prefectures.json') do |j|
-  prefectures = JSON.parse(j.read)
-end
-
-
-prefectures.each do |prefecture|
-  create(prefecture[0], prefecture[2])
-end
+main(ARGV) if $PROGRAM_NAME == __FILE__

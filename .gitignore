@@ -1,1 +1,6 @@
 /output/*
+!/output/.gitkeep
+*.zip
+.bundle
+vendor/bundle
+.rspec_status

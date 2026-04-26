@@ -1,0 +1,7 @@
+.git
+.github
+output
+spec
+*.zip
+.bundle
+vendor
