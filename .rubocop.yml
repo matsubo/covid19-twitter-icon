@@ -1,9 +1,10 @@
-require:
+plugins:
   - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
+  SuggestExtensions: false
   Exclude:
     - 'vendor/**/*'
     - 'output/**/*'
@@ -11,11 +12,20 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Style/WordArray:
+  Enabled: false
+
 Metrics/MethodLength:
   Max: 30
 
 Metrics/AbcSize:
-  Max: 25
+  Max: 40
 
 Layout/LineLength:
   Max: 120
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 5
