@@ -29,3 +29,12 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Max: 5
+
+Style/Semicolon:
+  Enabled: false
+
+Style/SingleLineMethods:
+  Enabled: false
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false

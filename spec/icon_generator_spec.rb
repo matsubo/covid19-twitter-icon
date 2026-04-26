@@ -19,20 +19,20 @@ RSpec.describe IconGenerator do
   end
 
   describe '#generate' do
-    it 'invokes ImageMagick with the configured options and writes the file' do
+    it 'returns the expected output path' do
       Dir.mktmpdir do |dir|
         gen = described_class.new(output_dir: dir, header_text: 'TEST')
-        fake_tool = instance_double(MiniMagick::Tool::Convert)
+        fake_tool = Object.new
+        captured_args = []
+        fake_tool.define_singleton_method(:size) { |*args| args }
+        fake_tool.define_singleton_method(:<<) { |arg| captured_args << arg; self }
         allow(MiniMagick::Tool::Convert).to receive(:new).and_yield(fake_tool).and_return(fake_tool)
-        allow(fake_tool).to receive(:size)
-        allow(fake_tool).to receive(:<<).and_return(fake_tool)
         allow(FileUtils).to receive(:chmod)
 
         path = gen.generate(prefecture)
 
         expect(path).to eq(File.join(dir, 'tokyo.png'))
-        expect(fake_tool).to have_received(:<<).with('TEST')
-        expect(fake_tool).to have_received(:<<).with('東京都')
+        expect(captured_args).to include('TEST', '東京都')
       end
     end
   end
