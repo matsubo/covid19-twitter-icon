@@ -30,11 +30,11 @@ Use the published image from GitHub Container Registry:
 docker run --rm -v "$PWD/output:/app/output" ghcr.io/matsubo/covid19-twitter-icon:latest
 ```
 
-Or build locally with `docker compose`:
+Or build the image locally:
 
 ```sh
-docker compose run --rm app bundle install
-docker compose run --rm app bundle exec ruby main.rb
+docker build -t covid19-twitter-icon .
+docker run --rm -v "$PWD/output:/app/output" covid19-twitter-icon
 ```
 
 PNGs are written to `output/`.
