@@ -14,4 +14,4 @@ COPY . .
 
 RUN mkdir -p output
 
-ENTRYPOINT ["bundle", "exec", "ruby", "main.rb"]
+CMD ["bundle", "exec", "ruby", "main.rb"]
