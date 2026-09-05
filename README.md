@@ -57,7 +57,7 @@ bundle exec ruby main.rb --text "STAY HOME" --output-dir output --color "#000000
 | `--text`       | `COVID-19`  | Top overlay text                         |
 | `--output-dir` | `output`    | Directory for generated PNGs             |
 | `--color`      | `#000000`   | Prefecture text color                    |
-| `--data`       | `prefectures.json` | Path to prefectures JSON          |
+| `--data`       | bundled `prefectures.json` | Path to prefectures JSON  |
 
 ## Compress PNGs
 
@@ -88,13 +88,13 @@ docker run --rm covid19-twitter-icon:test                      # rspec
 docker run --rm covid19-twitter-icon:test bundle exec rubocop  # lint
 ```
 
-CI builds this image and runs rubocop and rspec inside it on every push and pull request.
+CI builds this image and runs rubocop and rspec inside it on every push and pull request. It also builds the app image from `Dockerfile`, generates the iconset with it, and uploads `output/` as the `iconset` workflow artifact.
 
 ## Releases & packages
 
 Push a `v*` tag (or run the **Release** workflow manually) to:
 
-1. Build the full iconset, compress with `pngquant`, and attach the zip bundle to a [GitHub Release](https://github.com/matsubo/covid19-twitter-icon/releases).
+1. Build the full iconset inside the Docker image, compress it with `pngquant`, and attach the zip bundle to a [GitHub Release](https://github.com/matsubo/covid19-twitter-icon/releases).
 2. Build and publish a Docker image to [GitHub Container Registry](https://github.com/matsubo/covid19-twitter-icon/pkgs/container/covid19-twitter-icon) tagged `latest`, `vX.Y.Z`, and `vX.Y`.
 
 ## Fonts
