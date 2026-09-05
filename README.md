@@ -72,9 +72,23 @@ just generate     # generate icons
 just compress     # pngquant compress
 just test         # run rspec
 just lint         # run rubocop
+just docker-test  # rspec inside the Docker test image
+just docker-lint  # rubocop inside the Docker test image
 just package v1.0.0   # zip the iconset
 just release v1.0.0   # generate + compress + package
 ```
+
+## Tests and lint (Docker)
+
+The app image built from `Dockerfile` ships only the runtime gems, so it cannot run the test suite. `Dockerfile.test` extends the same Ruby 4 + ImageMagick base with the development/test gems and `spec/`:
+
+```sh
+docker build -f Dockerfile.test -t covid19-twitter-icon:test .
+docker run --rm covid19-twitter-icon:test                      # rspec
+docker run --rm covid19-twitter-icon:test bundle exec rubocop  # lint
+```
+
+Build it with BuildKit (the default since Docker 23) so that `Dockerfile.test.dockerignore` is applied and `spec/` is included; the build fails early otherwise. CI runs the same image for lint and tests on every push and pull request.
 
 ## Releases & packages
 

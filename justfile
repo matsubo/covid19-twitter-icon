@@ -27,6 +27,18 @@ lint:
 lint-fix:
     bundle exec rubocop -A
 
+# Build the test image (Ruby 4 + ImageMagick + dev/test gems + spec/)
+docker-build-test:
+    docker build -f Dockerfile.test -t covid19-twitter-icon:test .
+
+# Run rspec inside the test image
+docker-test: docker-build-test
+    docker run --rm covid19-twitter-icon:test bundle exec rspec
+
+# Run rubocop inside the test image
+docker-lint: docker-build-test
+    docker run --rm covid19-twitter-icon:test bundle exec rubocop
+
 # Build a zip iconset bundle
 package version="dev":
     rm -f covid19-twitter-icon-{{version}}.zip
