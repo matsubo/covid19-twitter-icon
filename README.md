@@ -88,7 +88,7 @@ docker run --rm covid19-twitter-icon:test                      # rspec
 docker run --rm covid19-twitter-icon:test bundle exec rubocop  # lint
 ```
 
-Build it with BuildKit (the default since Docker 23) so that `Dockerfile.test.dockerignore` is applied and `spec/` is included; the build fails early otherwise. CI runs the same image for lint and tests on every push and pull request.
+CI builds this image and runs rubocop and rspec inside it on every push and pull request.
 
 ## Releases & packages
 

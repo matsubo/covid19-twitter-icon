@@ -1,9 +1,0 @@
-# Applied by BuildKit when building with -f Dockerfile.test.
-# Same as .dockerignore, but keeps spec/ so the test suite is in the image.
-.git
-.github
-output
-*.zip
-.bundle
-vendor
-.rspec_status

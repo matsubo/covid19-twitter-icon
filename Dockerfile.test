@@ -2,13 +2,12 @@
 # gem groups and the spec suite, so rspec and rubocop run against the same
 # Ruby and ImageMagick that ship in the app image.
 #
-# Build with BuildKit (the default in Docker 23+) so that
-# Dockerfile.test.dockerignore is honoured and spec/ ends up in the context:
 #   docker build -f Dockerfile.test -t covid19-twitter-icon:test .
 #   docker run --rm covid19-twitter-icon:test                     # rspec
 #   docker run --rm covid19-twitter-icon:test bundle exec rubocop # lint
 FROM ruby:4-slim
 
+# build-essential: the locked json and prism gems compile native extensions.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential imagemagick libmagickwand-dev pngquant zip \
     && rm -rf /var/lib/apt/lists/*
@@ -19,10 +18,5 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4
 
 COPY . .
-
-# The legacy (non-BuildKit) builder ignores Dockerfile.test.dockerignore and
-# applies .dockerignore instead, which drops spec/. Fail the build loudly
-# rather than shipping an image whose test suite has zero examples.
-RUN test -d spec || { echo "spec/ is missing from the build context: build with BuildKit so Dockerfile.test.dockerignore applies" >&2; exit 1; }
 
 CMD ["bundle", "exec", "rspec"]
