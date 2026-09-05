@@ -3,6 +3,7 @@
 require 'spec_helper'
 require 'prefecture'
 require 'tempfile'
+require 'tmpdir'
 
 RSpec.describe Prefecture do
   describe '.from_row' do
@@ -20,8 +21,8 @@ RSpec.describe Prefecture do
   end
 
   describe '.load_all' do
-    it 'loads all 47 prefectures from the bundled JSON' do
-      list = described_class.load_all('prefectures.json')
+    it 'loads all 47 prefectures from the bundled JSON regardless of the working directory' do
+      list = Dir.chdir(Dir.tmpdir) { described_class.load_all }
       expect(list.size).to eq(47)
       expect(list.map(&:slug)).to include('tokyo', 'osaka', 'okinawa', 'hokkaido')
     end

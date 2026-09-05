@@ -8,6 +8,15 @@ require 'tmpdir'
 RSpec.describe IconGenerator do
   let(:prefecture) { Prefecture.new(name: '東京都', reading: 'とうきょう', slug: 'tokyo') }
 
+  describe 'DEFAULT_OPTIONS' do
+    it 'resolves the bundled font files regardless of the working directory' do
+      fonts = described_class::DEFAULT_OPTIONS.values_at(:header_font, :label_font)
+      Dir.chdir(Dir.tmpdir) do
+        expect(fonts).to all(satisfy('exist on disk') { |path| File.exist?(path) })
+      end
+    end
+  end
+
   describe '#initialize' do
     it 'creates the output directory' do
       Dir.mktmpdir do |dir|

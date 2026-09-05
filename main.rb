@@ -22,9 +22,9 @@ end
 
 def main(argv)
   options = parse_options(argv)
-  data_path = options.delete(:data) || 'prefectures.json'
+  data_path = options.fetch(:data, Prefecture::DEFAULT_PATH)
 
-  generator = IconGenerator.new(options)
+  generator = IconGenerator.new(options.except(:data))
   Prefecture.load_all(data_path).each do |pref|
     path = generator.generate(pref)
     puts path

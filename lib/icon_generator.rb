@@ -5,16 +5,18 @@ require 'mini_magick'
 
 # Renders a single 550x550 prefecture icon with a configurable header label.
 class IconGenerator
+  FONT_DIR = File.expand_path('../fonts', __dir__)
+
   DEFAULT_OPTIONS = {
     size: '550x550',
     background: '#FFFFFF',
     header_text: 'COVID-19',
     header_color: '#999999',
-    header_font: 'fonts/Furore.otf',
+    header_font: File.join(FONT_DIR, 'Furore.otf'),
     header_pointsize: 90,
     header_offset: '+0-110',
     label_color: '#000000',
-    label_font: 'fonts/rounded-mplus-2p-medium.ttf',
+    label_font: File.join(FONT_DIR, 'rounded-mplus-2p-medium.ttf'),
     label_pointsize: 150,
     label_offset: '+0+20',
     output_dir: 'output'
