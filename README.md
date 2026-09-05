@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/matsubo/covid19-twitter-icon?sort=semver)](https://github.com/matsubo/covid19-twitter-icon/releases)
 [![GHCR](https://img.shields.io/badge/ghcr.io-matsubo%2Fcovid19--twitter--icon-blue?logo=docker)](https://github.com/matsubo/covid19-twitter-icon/pkgs/container/covid19-twitter-icon)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Ruby](https://img.shields.io/badge/Ruby-3.3-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
+[![Ruby](https://img.shields.io/badge/Ruby-4-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
 
 Generates Twitter (X) icons for the 47 prefectures of Japan. Originally built for COVID-19 awareness; the overlay text is now configurable so the same generator works for any short label.
 
@@ -19,7 +19,7 @@ Pre-built iconset bundles are attached to each [GitHub Release](https://github.c
 
 ## Requirements
 
-- Docker, or Ruby 3+ with ImageMagick installed locally
+- Docker, or Ruby 4 with ImageMagick installed locally
 - [`just`](https://github.com/casey/just) (optional, for task shortcuts)
 
 ## Quick start (Docker)
